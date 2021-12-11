@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        {{ msg }}
+        <tr>
+            <th>name</th>
+            <th>address</th>
+            <th>product</th>
+            <th>quantiity</th>
+            <th>prize</th>
+            <th>action</th>
+        </tr>
+        {% for data in allorderitem %}
+        <tr>
+            <td>{{ data.order.firstname }} {{ data.order.lastname }}</td>
+            <td>{{ data.order.address_street }} {{ data.order.address_landmark }} {{ data.order.address_pincode }}</td>
+            <td>{{ data.product.name }}</td>
+            <td>{{ data.quantity }}</td>
+            <td>{{ data.prize }}</td>
+            <td>
+                <a href="{% url 'edit_deatil' data.order_id %}">edit</a>
+                <a href="{% url 'delete_deatil' data.order_id %}">delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

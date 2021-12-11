@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <title>form</title>
+    <body>
+        <form action="{% url 'add_deatil' %}" method="post">
+        {% csrf_token %}
+
+        <h3>Person Deatil</h3>
+        <!-- done msg ! create me -->
+        {{sms}}{{editsms}}
+            <h6>First Name</h6><input type="text" name="firstname" value="{{ allorderitem.order.firstname }}">
+            <h6>Last Name</h6><input type="text" name="lastname" value="{{ allorderitem.order.lastname }}">
+            <h6>Email</h6><input type="email" name="email" value="{{ allorderitem.order.email }}">
+
+        <h3>Address Detail</h3><br>
+            <h6>Street</h6><input type="text" name="address_street" value="{{ allorderitem.order.address_street }}">
+            <h6>Landmark</h6><input type="textarea" name="address_landmark" value="{{ allorderitem.order.address_landmark }}">
+            <h6>Postal code</h6><input type="text" name="address_pincode" value="{{ allorderitem.order.address_pincode }}" >
+
+        <h3>Order Detail</h3><br>
+            <h6>Product</h6>
+            <select name="product" >
+                {% for product in topproduct %}<option value="{{ product.id }}">{{ product.name }}</option>{% endfor %}
+            </select>
+
+        <h6>Quantity</h6><input type="text" name="quantity" value="{{ allorderitem.quantity }}">
+        <h6>Prize</h6><input type="text" name="prize" value="{{ allorderitem.prize }}">
+        <input type="submit" name="submit" value="save">
+        <input type="reset" name="reset" value="cancel">
+        </form>
+    </body>
+</head>

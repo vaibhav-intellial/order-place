@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+</head>
+
+<body>
+    <form action="{% url 'update_deatil' allorderitem.order_id %}" method="post">
+    {% csrf_token %}
+        <h1>details</h1>
+        {{ msg }}{{ editsms }}{{ sms }}
+        <h3>firstname</h3><input type="text" name="firstname" value="{{ allorderitem.order.firstname }}">
+        <h3>lastname</h3><input type="text" name="lastname" value="{{ allorderitem.order.lastname }}">
+        <h3>email</h3><input type="text" name="email" value="{{ allorderitem.order.lastname }}">
+        <h3>street</h3><input type="text" name="address_street" value="{{ allorderitem.order.address_street }}">
+        <h3>landmark</h3><input type="text" name="address_landmark" value="{{ allorderitem.order.address_landmark }}">
+        <h3>pincode</h3><input type="text" name="address_pincode" value="{{ allorderitem.order.address_pincode }}">
+
+        <h3>product</h3>
+        <select name="product">
+        {% for product in topproduct %}
+            <option value="{{ product.id }}" id="{{ product.id }}">{{ product.name }}</option>
+        {% endfor %}
+        </select>
+
+        <h3>quantity</h3><input type="text" name="quantity" value="{{ allorderitem.quantity }}">
+        <h3>prize</h3><input type="text" name="prize" value="{{ allorderitem.prize }}">
+        <input type="submit" name="Update Order" value="update">
+    </form>
+
+</body>
+
+</html>
